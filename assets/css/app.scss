@@ -1,0 +1,14 @@
+$theme-colors: (
+        "primary": #45858C,
+        "danger": #A0D9D9,
+        "warning":#D9B166
+);
+
+body {
+    background-color: lightblue;
+}
+
+
+
+
+@import "~bootstrap/scss/bootstrap";
