@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    {% if slug %}
+        <h1>{{ slug }}</h1>
+    {% else %}
+<h1> {{ serie }}</h1>
+    {% endif %}
+{% endblock %}
