@@ -101,20 +101,25 @@ class WildController extends AbstractController
     }
 
     /**
-     * @Route("/program/{id}", name="show_programs").
-     * @param int $id
+     * @Route("/program/{programName<^[a-z0-9-]+$>}", name="show_program").
+     * @param string $programName
      * @return Response
      */
-public function showByProgram(int $id): Response {
+public function showByProgram(?string $programName): Response {
+    $programName = preg_replace(
+        '/-/',
+        ' ', ucwords(trim(strip_tags($programName)), "-")
+    );
 
     $program = $this->getDoctrine()
         ->getRepository(Program::class)
-        ->findOneBy(['id' => $id]);
+        ->findOneBy(['title' => mb_strtolower($programName)]);
+
 
     $seasons = $program->getSeasons();
 
     return $this->render('wild/program.html.twig', [
-        'id'=>$id,
+        'program_name'=>$programName,
         'program'   => $program,
         'seasons'   => $seasons
 
