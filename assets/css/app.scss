@@ -5,9 +5,11 @@ $theme-colors: (
 );
 
 body {
-    background-color: lightblue;
+   background-color: lightgrey !important;
 }
-
+.align-self-start.mr-3.poster {
+    width: 300px;
+}
 
 
 

@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container_program text-center d-flex align-items-center">
+    <div class="p-3">
+        <h2 class="mt-3 text-warning">{{ program.title }}</h2>
+        <p>{{ program.summary }}</p>
+        <img class="align-self-start mr-3 poster" src="{{program.poster}}" alt="{{ program.title }} poster">
+    </div>
+    <div class="p-5">
+        <h2 class="text-warning"> Saisons</h2>
+        {% for season in seasons %}
+        <a href="{{ path('show_season', {id: season.id}) }}" > Saison {{ season.number }} </a>
+            <p class="text-justify"> {{ season.description }}</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
