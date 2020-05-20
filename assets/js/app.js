@@ -15,3 +15,5 @@ const $ = require('jquery');
 // the bootstrap module doesn't export/return anything
 require('bootstrap');
 console.log('Hello Webpack Encore! Edit me in assets/js/app.js');
+$('#element').toast('show');
+
