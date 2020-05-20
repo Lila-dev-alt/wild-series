@@ -47,4 +47,13 @@ class ProgramRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function findOneLikeSubmittedTitle($title)
+    {
+        $query = $this->createQueryBuilder('p')
+            ->where('p.title LIKE :title')
+            ->setParameter('title', "%" . $title . "%")
+            ->getQuery();
+        return $query->getResult();
+    }
 }

@@ -1,9 +1,18 @@
 {% extends 'base.html.twig' %}
-
 {% block title %}All programs{% endblock %}
-
+{% form_theme form 'foundation_5_layout.html.twig' %}
 {% block body %}
-    <h1>Toutes les séries de la table program : </h1>
+    <h1>Toutes les séries </h1>
+    <div class="container-form p-2">
+<div class="form-group p-2">
+     {{ form_start(form) }}
+    <div class="form-control">
+    {{ form_row(form.searchField) }}
+    </div>
+    <button type="submit" name="btnSearch">Rechercher</button>
+    {{ form_end(form) }}
+</div>
+    </div>
     {% for program in programs %}
         <div>
             <h2>{{ loop.index }} / {{ program.title }} - Catégorie : {{ program.category.name }}</h2>
@@ -14,6 +23,10 @@
     {% endfor %}
     <a href="{{ path('app_index') }}">
         Retour à l'accueil
+    </a>
+    <br>
+    <a href="{{ path('wild_index') }}">
+        Retour à toutes les séries
     </a>
 
 {% endblock %}
