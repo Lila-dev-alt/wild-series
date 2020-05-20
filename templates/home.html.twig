@@ -2,17 +2,17 @@
 
 {% block body %}
 <h1> {{ bienvenue }}</h1>
-    <a href="{{ path('show_program', { 'programName': "walking-dead" }) }}">Walking dead</a>
+    <a href="{{ path('show_program', { id: 1 }) }}">Walking dead</a>
     <br>
-    <a href="{{ path('show_program', { 'programName': "the-haunting-of-hill-house" }) }}">The Hauting of Hill House</a>
+    <a href="{{ path('show_program', { id: 2 }) }}">The Hauting of Hill House</a>
     <br>
-    <a href="{{ path('show_program', { 'programName': "american-horror-story" }) }}">American Horror Story</a>
+    <a href="{{ path('show_program', { id: 3 }) }}">American Horror Story</a>
     <br>
-    <a href="{{ path('show_program', { 'programName': "love-death-and-robots" }) }}">Love Death And Robots</a>
+    <a href="{{ path('show_program', { id: 4 }) }}">Love Death And Robots</a>
     <br>
-    <a href="{{ path('show_program', { 'programName': "penny-dreadful" }) }}">Penny Dreadful</a>
+    <a href="{{ path('show_program', { id: 5 }) }}">Penny Dreadful</a>
     <br>
-    <a href="{{ path('show_program', { 'programName': "fear-the-walking-dead" }) }}">Fear The Walkind Dead</a>
+    <a href="{{ path('show_program', { id: 6 }) }}">Fear The Walkind Dead</a>
     <br>
     <a href="{{ path('wild_index') }}">
         Toutes les séries !
