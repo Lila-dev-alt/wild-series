@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
-
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
 {% block body %}
-    <h2 class="text-center bg-warning mt-3"> Ajout d'une catégorie</h2>
+    <h2 class="text-center bg-warning mt-3"> Ajouter une catégorie</h2>
     {% if message is defined and message is not empty %}
         <div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px;">
         <div style="position: absolute; top: 0; right: 0; margin-right: 10px;">

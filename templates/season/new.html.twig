@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+{% block title %}New Season{% endblock %}
+
+{% block body %}
+    <h1 class="bg-warning text-center mt-3">Ajouter une saison</h1>
+
+    {{ include('season/_form.html.twig') }}
+
+    <a class="btn bg-primary text-white"  href="{{ path('season_index') }}">Retour à la liste</a>
+{% endblock %}

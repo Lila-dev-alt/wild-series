@@ -6,9 +6,7 @@ $theme-colors: (
 
 );
 $grey: #D3D3D3;
-body {
-   background-color: $grey!important;
-}
+
 .align-self-start.mr-3.poster {
     width: 300px;
 }
@@ -18,3 +16,28 @@ div.form-control {
 
 
 @import "~bootstrap/scss/bootstrap";
+
+body {
+  background-color: $grey!important;
+  font-family: 'Nanum Gothic', sans-serif;
+}
+h1,h2,h3,h4 {
+  font-family: 'Open Sans', sans-serif;
+}
+
+img.index {
+  width: 200px;
+}
+
+th {
+  font-weight: bold;
+}
+
+.button-s {
+  margin-bottom: -15px;
+  margin-top: 5px;
+}
+
+body > div.container.w-50 > form > button {
+  float: right;
+}

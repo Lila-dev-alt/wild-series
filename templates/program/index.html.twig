@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Program index{% endblock %}
+{% block body %}
+    <h1 class="bg-warning text-center mt-3">Program index</h1>
+    <div class="container m-auto d-flex justify-content-center">
+        <div>
+        <div class="button-s text-right">
+        <a class="btn btn-danger" href="{{ path('program_new') }}">Créez un nouveau</a>
+        </div>
+    <table class="table table-hover mt-3">
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Résumé</th>
+                <th>Image</th>
+                <th>Pays</th>
+                <th>Année</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for program in programs %}
+            <tr>
+                <td> <strong>{{ program.title }} </strong></td>
+                <td>{{ program.summary }}</td>
+                <td> <img class="index" src="{{ program.poster }}" alt="Image of série"></td>
+                <td>{{ program.country }}</td>
+                <td>{{ program.year }}</td>
+                <td>
+                    <a class="btn bg-warning"  href="{{ path('program_show', {'id': program.id}) }}">Voir</a>
+                    <a class="btn bg-primary text-white mt-1" href="{{ path('program_edit', {'id': program.id}) }}">Edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+        </div>
+    </div>
+{% endblock %}

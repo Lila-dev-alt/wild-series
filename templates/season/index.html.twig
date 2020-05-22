@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Season index{% endblock %}
+
+{% block body %}
+    <h1 class="bg-warning text-center mt-3">Saisons index</h1>
+    <div class="container m-auto d-flex justify-content-center">
+        <div>
+
+    <table class="table table-hover mt-3">
+        <thead class="table-active">
+            <tr>
+                <th>Série</th>
+                <th>Numéro</th>
+                <th>Année</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for season in seasons %}
+            <tr>
+                <td><strong>{{ season.program.title }}</strong></td>
+                <td><strong>{{ season.number }}</strong></td>
+                <td>{{ season.year }}</td>
+                <td class="text-justify">{{ season.description }}</td>
+                <td>
+                    <a class="btn bg-warning" href="{{ path('season_show', {'id': season.id}) }}">Voir</a>
+                    <a class="btn bg-primary text-white mt-1" href="{{ path('season_edit', {'id': season.id}) }}">Edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+        </div>
+        </div>
+{% endblock %}

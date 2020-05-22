@@ -157,7 +157,7 @@ public function showBySeason(int $id): Response {
 }
 
     /**
-     * @Route("/episode/{id}", name="episode_show")
+     * @Route("/episode/{id}", name="show_episode")
      * @param Episode $episode
      * @return Response
      */

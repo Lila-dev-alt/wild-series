@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Episode index{% endblock %}
+
+{% block body %}
+    <h1 class="bg-warning text-center mt-3">Episodes index</h1>
+<div class="container m-auto d-flex justify-content-center">
+    <div>
+    <table class="table table-hover mt-3">
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Numéro</th>
+                <th>Synopsis</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for episode in episodes %}
+            <tr>
+                <td>{{ episode.title }}</td>
+                <td>{{ episode.number }}</td>
+                <td>{{ episode.synopsis }}</td>
+                <td>
+                    <a class="btn bg-warning"  href="{{ path('episode_show', {'id': episode.id}) }}">Voir</a>
+                    <a class="btn bg-primary text-white mt-1" href="{{ path('episode_edit', {'id': episode.id}) }}">Edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+</div>
+{% endblock %}

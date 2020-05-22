@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+{% block title %}New Program{% endblock %}
+
+{% block body %}
+    <h1 class="bg-warning text-center mt-3">Ajouter un Programme</h1>
+    {{ include('program/_form.html.twig') }}
+    <a class="btn bg-primary text-white" href="{{ path('program_index') }}">Retour à la liste</a>
+{% endblock %}

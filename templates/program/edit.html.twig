@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+{% block title %}Éditer un programme{% endblock %}
+
+{% block body %}
+    <h1 class="bg-warning text-center mt-3">Éditer un Programme</h1>
+
+    {{ include('program/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('program_index') }}">back to list</a>
+
+    {{ include('program/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Season{% endblock %}
+
+{% block body %}
+    <h1 class="bg-warning text-center mt-3">Saison {{ season.number }}: {{ season.program.title }}</h1>
+     <div class="container d-flex justify-content-center w-50">
+    <table class="table mt-5">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ season.id }}</td>
+            </tr>
+            <tr>
+                <th>Numéro</th>
+                <td>{{ season.number }}</td>
+            </tr>
+            <tr>
+                <th>Année</th>
+                <td>{{ season.year }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ season.description }}</td>
+            </tr>
+        </tbody>
+    </table>
+     </div>
+   <div class="bouttons d-flex justify-content-between mt-5 m-auto w-50 p-3">
+    <a class="text-dark btn bg-warning" href="{{ path('season_index') }}">Retour à la liste</a>
+       <a class="text-light btn bg-warning" href="{{ path('episode_new', {'id': season.id}) }}">Ajouter un épisode</a>
+
+    <a class="text-white btn bg-primary"  href="{{ path('season_edit', {'id': season.id}) }}">Éditer</a>
+
+    {{ include('season/_delete_form.html.twig') }}
+   </div>
+{% endblock %}
