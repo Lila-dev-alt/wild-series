@@ -4,14 +4,15 @@
 {% block body %}
     <h1 class="text-center bg-warning mt-3">Toutes les séries</h1>
     <div class="container-form p-2">
-<div class="form-group p-2">
+<form class="form-group p-2 mb-3">
      {{ form_start(form) }}
     <div class="form-control">
     {{ form_row(form.searchField) }}
-    </div>
+
     <button type="submit" name="btnSearch">Rechercher</button>
     {{ form_end(form) }}
-</div>
+    </div>
+</form>
     </div>
     {% for program in programs %}
         <div>
