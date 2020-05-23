@@ -14,7 +14,10 @@ class EpisodeType extends AbstractType
         $builder
             ->add('title', null, ['label' => 'Titre'])
             ->add('number', null, ['label' => "Numéro d'épisode"])
-            ->add('synopsis', null, ['label' => 'Synopsis'])
+            ->add('synopsis', null, ['label' => 'Synopsis',
+                'attr' => [
+                    'rows' => 5,
+                ]])
         ;
     }
 

@@ -13,7 +13,10 @@ class ProgramType extends AbstractType
     {
         $builder
             ->add('title',null,  ['label' => 'Titre'])
-            ->add('summary', null, ['label' => 'Résumé'] )
+            ->add('summary', null, ['label' => 'Résumé',
+                'attr' => [
+                    'rows' => 5,
+                ]] )
             ->add('poster', null, ['label' => 'Image'])
             ->add('country', null, ['label' => 'Pays de diffusion'])
             ->add('year', null, ['label' => 'Année'])

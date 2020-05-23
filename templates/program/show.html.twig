@@ -3,10 +3,10 @@
 {% block title %}Program{% endblock %}
 
 {% block body %}
-    <h1 class="bg-warning text-center mt-3">{{program.title}}</h1>
-<div class="container d-flex justify-content-center w-50">
-    <table class="table mt-5">
-        <tbody>
+    <h1 class="bg-warning text-center mt-3">{{ program.title }}</h1>
+    <div class="container d-flex justify-content-center w-50">
+        <table class="table mt-5">
+            <tbody>
             <tr>
                 <th>Id</th>
                 <td>{{ program.id }}</td>
@@ -27,16 +27,16 @@
                 <th>Année</th>
                 <td>{{ program.year }}</td>
             </tr>
-        </tbody>
-    </table>
-    <div class="d-flex align-self-center photo">
- <img class="index show" src="{{ program.poster }}" alt="photo of serie">
+            </tbody>
+        </table>
+        <div class="d-flex align-items-center photo">
+            <img class="index show" src="{{ program.poster }}" alt="photo of serie">
+        </div>
     </div>
-</div>
     <div class="bouttons d-flex justify-content-between mt-5 m-auto w-50 p-3">
-    <a class="text-dark btn bg-warning" href="{{ path('program_index') }}">Retour à la liste</a>
+        <a class="text-dark btn bg-warning" href="{{ path('program_index') }}">Retour à la liste</a>
         <a class="text-white btn bg-warning" href="{{ path('season_new', {'id': program.id}) }}">Ajouter une saison</a>
-    <a href="{{ path('program_edit', {'id': program.id}) }}" class="btn btn-primary"> Éditer</a>
-     {{ include('program/_delete_form.html.twig') }}
+        <a href="{{ path('program_edit', {'id': program.id}) }}" class="btn btn-primary"> Éditer</a>
+        {{ include('program/_delete_form.html.twig') }}
     </div>
 {% endblock %}

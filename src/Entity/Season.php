@@ -41,7 +41,7 @@ class Season
     private $description;
 
     /**
-     * @ORM\OneToMany(targetEntity=Episode::class, mappedBy="season")
+     * @ORM\OneToMany(targetEntity=Episode::class, mappedBy="season", cascade={"remove"})
      */
     private $episodes;
 
