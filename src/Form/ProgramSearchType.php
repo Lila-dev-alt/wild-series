@@ -11,6 +11,6 @@ class ProgramSearchType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('searchField');
+        $builder->add('searchField', null, ['label' => 'Chercher une série']);
     }
 }
