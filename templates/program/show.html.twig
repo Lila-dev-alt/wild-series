@@ -33,6 +33,17 @@
             <img class="index show" src="{{ program.poster }}" alt="photo of serie">
         </div>
     </div>
+    <h4 class="text-center"> Acteur(s) :</h4>
+    <div class="actors mt-3 mb-3 d-flex justify-content-center">
+            <div class="list-group w-25">
+
+            {% for actor in program.actors %}
+                <a href="{{ path('actor_id', {id: actor.id} ) }}" class="list-group-item list-group-item-action bg-transparent text-center text-info">{{ actor.name }}</a>
+            {% else %}
+                Aucun acteur pour cette série
+            {% endfor %}
+            </div>
+    </div>
     <div class="bouttons d-flex justify-content-between mt-5 m-auto w-50 p-3">
         <a class="text-dark btn bg-warning" href="{{ path('program_index') }}">Retour à la liste</a>
         <a class="text-white btn bg-warning" href="{{ path('season_new', {'id': program.id}) }}">Ajouter une saison</a>
