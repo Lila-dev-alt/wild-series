@@ -2,22 +2,10 @@
 
 {% block body %}
 <h1 class="text-center bg-warning mt-3"> {{ bienvenue }}</h1>
-    <a href="{{ path('show_program', { id: 1 }) }}">Walking dead</a>
+{% for program in programs %}
+    <a href="{{ path('show_program', { id: program.id }) }}">{{program.title}}</a>
     <br>
-    <a href="{{ path('show_program', { id: 2 }) }}">The Hauting of Hill House</a>
-    <br>
-    <a href="{{ path('show_program', { id: 3 }) }}">American Horror Story</a>
-    <br>
-    <a href="{{ path('show_program', { id: 4 }) }}">Love Death And Robots</a>
-    <br>
-    <a href="{{ path('show_program', { id: 5 }) }}">Penny Dreadful</a>
-    <br>
-    <a href="{{ path('show_program', { id: 6 }) }}">Fear The Walkind Dead</a>
-    <br>
-    <a href="{{ path('show_program', { id: 7 }) }}">Brooklyn nine-nine</a>
-    <br>
-    <a href="{{ path('show_program', { id: 8 }) }}">Derry Girls</a>
-    <br>
+    {% endfor %}
     <a href="{{ path('wild_index') }}">
         Toutes les séries !
     </a>
