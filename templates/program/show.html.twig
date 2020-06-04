@@ -47,7 +47,7 @@
     <div class="bouttons d-flex justify-content-between mt-5 m-auto w-50 p-3">
         <a class="text-dark btn bg-warning" href="{{ path('program_index') }}">Retour à la liste</a>
         <a class="text-white btn bg-warning" href="{{ path('season_new', {'id': program.id}) }}">Ajouter une saison</a>
-        <a href="{{ path('program_edit', {'id': program.id}) }}" class="btn btn-primary"> Éditer</a>
+        <a href="{{ path('program_edit', {'slug': program.slug}) }}" class="btn btn-primary"> Éditer</a>
         {{ include('program/_delete_form.html.twig') }}
     </div>
 {% endblock %}

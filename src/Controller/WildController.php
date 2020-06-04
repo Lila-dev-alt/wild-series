@@ -3,6 +3,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Actor;
 use App\Entity\Category;
 use App\Entity\Episode;
 use App\Entity\Program;
@@ -171,4 +172,17 @@ public function showEpisode(Episode $episode): Response {
         'program'=> $program
         ]);
 }
+    /**
+     * @Route("/actor/{id}", name="id")
+     * @param Actor $actor
+     * @return Response
+     */
+    public function showActor(Actor $actor):Response
+    {
+        $programs = $actor->getPrograms();
+        return $this->render('index_actors.html.twig', [
+            'programs'=> $programs,
+            'actor'=> $actor
+        ]);
+    }
 }

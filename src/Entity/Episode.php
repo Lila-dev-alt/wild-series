@@ -37,6 +37,11 @@ class Episode
      * @ORM\Column(type="text")
      */
     private $synopsis;
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $slug;
+
 
     public function getId(): ?int
     {
@@ -89,5 +94,21 @@ class Episode
         $this->synopsis = $synopsis;
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param mixed $slug
+     */
+    public function setSlug($slug): void
+    {
+        $this->slug = $slug;
     }
 }

@@ -29,7 +29,7 @@
     <div class="bouttons d-flex justify-content-between m-auto w-50 p-3">
         <a class="text-dark btn bg-warning" href="{{ path('episode_index') }}">Retour à la liste</a>
 
-        <a class="text-white btn btn-primary " href="{{ path('episode_edit', {'id': episode.id}) }}">Éditer</a>
+        <a class="text-white btn btn-primary " href="{{ path('episode_edit', {'slug': episode.slug}) }}">Éditer</a>
 
         {{ include('episode/_delete_form.html.twig') }}
     </div>

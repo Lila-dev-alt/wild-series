@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Actor{% endblock %}
+
+{% block body %}
+
+    <h1 class="text-center bg-warning mt-3">{{ actor.name }} </h1>
+    <div class="container">
+        <h2 class=" text-center text-warning mt-3">Série(s) associée(s)</h2>
+        <div class="container-image d-flex justify-content-center ml-2 mt-3
+">
+        {% for program in programs %}
+            {% if program.poster > 1 %}
+ <div class="ml-2"><a href="{{ path('show_program', {id: program.id} ) }}"> <img src="{{ program.poster }}" alt="photo of serie"></a>
+ </div>
+            {% else %}
+                <a href="{{ path('show_program', {id: program.id} ) }}"> <img src="{{ program.poster }}" alt="photo of serie"></a>
+            {% endif %}
+       {% endfor %}
+        </div>
+</div>
+{% endblock %}

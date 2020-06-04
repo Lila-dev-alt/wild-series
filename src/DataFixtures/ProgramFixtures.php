@@ -9,6 +9,8 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Proxies\__CG__\App\Entity\Category;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+use Faker;
+use App\Service\Slugify;
 
 class ProgramFixtures extends Fixture implements DependentFixtureInterface
 {
@@ -108,26 +110,48 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager)
     {
         $i = 0;
+        $slugify = new Slugify();
         foreach (self::PROGRAMS as $title=> $data) {
             $program = new Program();
             $program->setTitle($title);
             $program->setSummary($data['summary']);
             $program->setPoster($data['poster']);
+            $program->setSlug($slugify->generate($program->getTitle()));
             $program->setCategory($this->getReference($data['category']));
             $program->setCountry($data['country']);
             $program->setYear($data['year']);
             $manager->persist($program);
             $this->addReference($data['reference'], $program);
             $i++;
+
+
         }
+        $faker = Faker\Factory::create('en_US');
+        $slugify = new Slugify();
+        for ($i=10; $i<12; $i++) {
+            $program = new Program();
+            $title = $faker->sentence(3);
+            $program->setTitle($title);
+            $program->setSummary($faker->paragraph);
+            $program->setPoster($faker->imageUrl());
+            $program->setCountry($faker->country);
+            $program->setYear(rand(2009, 2020));
+            $program->setSlug($slugify->generate($program->getTitle()));
+            $program->setCategory($this->getReference('categorie_' . rand(0, 4)));
+            $manager->persist($program);
+            $this->addReference('program_' . $i, $program);
         $manager->flush();
     }
+
+
+}
 
     /**
      * @inheritDoc
      */
     public function getDependencies()
     {
+
         return [CategoryFixtures::class];
     }
-}
+    }

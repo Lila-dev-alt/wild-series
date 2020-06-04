@@ -1,22 +1,38 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Actor{% endblock %}
+{% block title %}Actor index{% endblock %}
 
 {% block body %}
+    <h1>Actor index</h1>
+<div>
+    <div class="button-s text-right">
+        <a class="btn btn-danger" href="{{ path('actor_new') }}">Créez un nouveau</a>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for actor in actors %}
+            <tr>
+                <td>{{ actor.id }}</td>
+                <td>{{ actor.name }}</td>
+                <td>
+                    <a href="{{ path('actor_show', {'slug': actor.slug}) }}">show</a>
+                    <a href="{{ path('actor_edit', {'slug': actor.slug}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 
-    <h1 class="text-center bg-warning mt-3">{{ actor.name }} </h1>
-    <div class="container">
-        <h2 class=" text-center text-warning mt-3">Série(s) associée(s)</h2>
-        <div class="container-image d-flex justify-content-center ml-2 mt-3
-">
-        {% for program in programs %}
-            {% if program.poster > 1 %}
- <div class="ml-2"><a href="{{ path('show_program', {id: program.id} ) }}"> <img src="{{ program.poster }}" alt="photo of serie"></a>
- </div>
-            {% else %}
-                <a href="{{ path('show_program', {id: program.id} ) }}"> <img src="{{ program.poster }}" alt="photo of serie"></a>
-            {% endif %}
-       {% endfor %}
-        </div>
-</div>
+
 {% endblock %}

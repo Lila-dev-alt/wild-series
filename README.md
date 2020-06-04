@@ -16,3 +16,7 @@ https://www.loom.com/share/46e0ebd9d421496fb7d9b138c4b17d8e
 quete 16
 
 https://www.loom.com/share/3349e0ec8a11437b8cf022106d734937
+
+quete 17 : quete demoniaque
+
+https://www.loom.com/share/019a54be007f44c88e943386b2828fd9
