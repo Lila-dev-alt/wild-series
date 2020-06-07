@@ -13,7 +13,24 @@
             <p class="card-text">{{episode.synopsis}}</p>
             <a href="{{ path('show_season', {id: season.id}) }}" class="btn btn-primary">Voir la saison {{ season.number }}</a>
             <a href="{{ path('show_program', { id: program.id }) }}" class="btn btn-danger">Détails de la série</a>
+            <h5 class="mt-3"> Commentaires</h5>
+            <ul class="list-group w-25">
+                {% for comment in comments|reverse %}
+                    <li> {{ comment.author.displayName }}</li>
+                 <li class="list-group-item">   {{ comment.comment }} </li>
+                    <li> {{ comment.rate }}⭐</li>
+                {% endfor %}
+            </ul>
         </div>
+        {% if app.user %}
+        <div class="container w-50">
+        <h5 class="text-center"> Ajouter un commentaire</h5>
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button class="btn bg-warning">{{ button_label|default('Ajouter') }}</button>
+        {{ form_end(form) }}
+        </div>
+        {% endif %}
     </div>
     </div>
 {% endblock %}

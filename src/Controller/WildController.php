@@ -5,10 +5,13 @@ namespace App\Controller;
 
 use App\Entity\Actor;
 use App\Entity\Category;
+use App\Entity\Comment;
 use App\Entity\Episode;
 use App\Entity\Program;
 use App\Entity\Season;
+use App\Form\CommentType;
 use App\Form\ProgramSearchType;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -159,17 +162,37 @@ public function showBySeason(int $id): Response {
 
     /**
      * @Route("/episode/{id}", name="show_episode")
+     * @param Request $request
      * @param Episode $episode
      * @return Response
      */
 
 
-public function showEpisode(Episode $episode): Response {
+public function showEpisode(Request $request, Episode $episode, EntityManagerInterface $entityManager): Response {
     $season = $episode->getSeason();
     $program = $season->getProgram();
+    $commentRepository = $this->getDoctrine()->getRepository(Comment::class);
+    $comments = $commentRepository->findBy(['episode' => $episode]);
+    $form = $this->createForm(CommentType::class);
+    $form->handleRequest($request);
+
+    if ($form->isSubmitted() && $form->isValid()) {
+       /* $comment = new Comment(); */
+        $comment = $form->getData();
+        dump($comment);
+
+        $comment->setAuthor($this->getUser());
+        $comment->setEpisode($episode);
+        $entityManager->persist($comment);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('show_episode', ['id'=>$episode->getId()]);
+    }
     return $this->render('wild/episode.html.twig', ['episode'=>$episode,
         'season'=> $season,
-        'program'=> $program
+        'program'=> $program,
+        'comments'=> $comments,
+        'form' => $form->createView(),
         ]);
 }
     /**
