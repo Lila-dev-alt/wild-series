@@ -19,6 +19,12 @@
                     <li> {{ comment.author.displayName }}</li>
                  <li class="list-group-item">   {{ comment.comment }} </li>
                     <li> {{ comment.rate }}⭐</li>
+
+                {% if is_granted('ROLE_SUBSCRIBER') %}
+                    {% if comment.author.id == user.id %}
+                        {{ include('comment/_delete_form.html.twig') }}
+                     {% endif %}
+                {% endif %}
                 {% endfor %}
             </ul>
         </div>

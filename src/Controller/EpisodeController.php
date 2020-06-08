@@ -7,6 +7,7 @@ use App\Entity\Season;
 use App\Form\EpisodeType;
 use App\Service\Slugify;
 use App\Repository\EpisodeRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,7 +15,11 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/episode")
+ *
+ * @IsGranted("ROLE_ADMIN", statusCode=404, message="Post not found")
+ *
  */
+
 class EpisodeController extends AbstractController
 {
     /**

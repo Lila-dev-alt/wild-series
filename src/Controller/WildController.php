@@ -9,7 +9,7 @@ use App\Entity\Comment;
 use App\Entity\Episode;
 use App\Entity\Program;
 use App\Entity\Season;
-use App\Form\CommentType;
+use App\Form\CommentsType;
 use App\Form\ProgramSearchType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -164,6 +164,7 @@ public function showBySeason(int $id): Response {
      * @Route("/episode/{id}", name="show_episode")
      * @param Request $request
      * @param Episode $episode
+     * @param EntityManagerInterface $entityManager
      * @return Response
      */
 
@@ -173,14 +174,11 @@ public function showEpisode(Request $request, Episode $episode, EntityManagerInt
     $program = $season->getProgram();
     $commentRepository = $this->getDoctrine()->getRepository(Comment::class);
     $comments = $commentRepository->findBy(['episode' => $episode]);
-    $form = $this->createForm(CommentType::class);
+    $form = $this->createForm(CommentsType::class);
     $form->handleRequest($request);
 
     if ($form->isSubmitted() && $form->isValid()) {
-       /* $comment = new Comment(); */
         $comment = $form->getData();
-        dump($comment);
-
         $comment->setAuthor($this->getUser());
         $comment->setEpisode($episode);
         $entityManager->persist($comment);
@@ -193,6 +191,7 @@ public function showEpisode(Request $request, Episode $episode, EntityManagerInt
         'program'=> $program,
         'comments'=> $comments,
         'form' => $form->createView(),
+        'user' => $this->getUser(),
         ]);
 }
     /**

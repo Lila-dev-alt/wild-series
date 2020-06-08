@@ -6,6 +6,7 @@ use App\Entity\Program;
 use App\Entity\Season;
 use App\Form\SeasonType;
 use App\Repository\SeasonRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,11 +14,16 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/season")
+ *
+ * @IsGranted("ROLE_ADMIN", statusCode=404, message="Post not found")
+ *
  */
 class SeasonController extends AbstractController
 {
     /**
      * @Route("/", name="season_index", methods={"GET"})
+     * @param SeasonRepository $seasonRepository
+     * @return Response
      */
     public function index(SeasonRepository $seasonRepository): Response
     {
