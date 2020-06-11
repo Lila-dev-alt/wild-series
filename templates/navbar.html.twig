@@ -11,17 +11,15 @@
             <a class="nav-item nav-link text-white font-weight-bold" href="{{ path('episode_index') }}">Episodes</a>
             <a class="nav-item nav-link text-white font-weight-bold" href="{{ path('actor_index') }}">Acteurs</a>
         </div>
-        <div class="nav navbar-nav test-charles">
-            {% if app.user %}
-
-
-                    <a class=" nav-link text-white font-weight-bold" href="/my-profile"> Mon compte</a>
-               <a class=" nav-link text-white font-weight-bold" href="{{ path('app_logout') }}"> Se déconnecter</a>
-
-            {% else %}
-                <a class="nav-item nav-link text-white font-weight-bold" href="{{ path('app_login') }}"> Se connecter</a>
-                <a class="nav-item nav-link text-white font-weight-bold" href="{{ path('app_register') }}"> S'inscrire</a>
-            {% endif %}
-        </div>
     </div>
+    {% if app.user %}
+
+
+        <a class=" nav-link text-white font-weight-bold" href="/my-profile"> Mon compte</a>
+        <a class=" nav-link text-white font-weight-bold" href="{{ path('app_logout') }}"> Se déconnecter</a>
+
+    {% else %}
+        <a class="nav-item nav-link text-white font-weight-bold" href="{{ path('app_login') }}"> Se connecter</a>
+        <a class="nav-item nav-link text-white font-weight-bold" href="{{ path('app_register') }}"> S'inscrire</a>
+    {% endif %}
 </nav>

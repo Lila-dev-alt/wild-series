@@ -177,10 +177,7 @@ public function showEpisode(Request $request, Episode $episode, EntityManagerInt
     $form->handleRequest($request);
 
     if ($form->isSubmitted() && $form->isValid()) {
-       /* $comment = new Comment(); */
         $comment = $form->getData();
-        dump($comment);
-
         $comment->setAuthor($this->getUser());
         $comment->setEpisode($episode);
         $entityManager->persist($comment);
