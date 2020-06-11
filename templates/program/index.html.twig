@@ -16,6 +16,7 @@
                 <th>Image</th>
                 <th>Pays</th>
                 <th>Année</th>
+                <th>Acteurs</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -27,6 +28,13 @@
                 <td> <img class="index" src="{{ program.poster }}" alt="Image of série"></td>
                 <td>{{ program.country }}</td>
                 <td>{{ program.year }}</td>
+                <td>
+                {% for actor in program.actors %}
+                    {{ actor.name }},
+                {% else %}
+                    Aucun acteur pour cette série
+                {% endfor %}
+                </td>
                 <td>
                     <a class="btn bg-warning"  href="{{ path('program_show', {'slug': program.slug}) }}">Voir</a>
                     <a class="btn bg-primary text-white mt-1" href="{{ path('program_edit', {'slug': program.slug}) }}">Edit</a>
