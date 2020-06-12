@@ -32,3 +32,5 @@ https://www.loom.com/share/7f864eb7c5784a4bb54da43f337a4396
 quete 21
 
 https://www.loom.com/share/9b9d659fd533412e85aee45588924af7
+
+ajout du profil : https://www.loom.com/share/e5877f79777644fb82792030b90ff6ae
