@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+
+
+
+{% block body %}
+    <h2 class="text-center bg-warning mt-3">Mon profile </h2>
+    <div class="container d-flex justify-content-center">
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Mon nom:</h6>
+            <p class="card-text"> {{ app.user.displayName }}</p>
+            <a href="#" class="card-link">Mon email:</a>
+            <a href="#" class="card-link">{{ app.user.email }}</a>
+        </div>
+    </div>
+    </div>
+
+{% endblock %}
