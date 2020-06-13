@@ -32,8 +32,6 @@ class ProgramType extends AbstractType
                 'by_reference' => false,
 
             ]);
-
-        ;
     }
 
     public function configureOptions(OptionsResolver $resolver)

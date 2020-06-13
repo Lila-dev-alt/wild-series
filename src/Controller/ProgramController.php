@@ -13,6 +13,7 @@ use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 /**
  * @Route("/program")
@@ -21,9 +22,17 @@ class ProgramController extends AbstractController
 {
     /**
      * @Route("/", name="program_index", methods={"GET"})
+     * @param ProgramRepository $programRepository
+     * @param SessionInterface $session
+     * @return Response
      */
-    public function index(ProgramRepository $programRepository): Response
+    public function index(ProgramRepository $programRepository, SessionInterface $session): Response
     {
+        if (!$session->has('total')) {
+            $session->set('total', 0); // if total doesn’t exist in session, it is initialized.
+        }
+
+        $total = $session->get('total'); // get actual value in session with ‘total' key.
         return $this->render('program/index.html.twig', [
             'programs' => $programRepository->findAllWithCategoriesAndActor()
         ]);
@@ -58,7 +67,7 @@ class ProgramController extends AbstractController
                 ->html($this->renderView('/program/email/notification.html.twig', ['program'=> $program]));
 
             $mailer->send($email);
-
+            $this->addFlash('success', 'Vous avez ajouté un programme');
             return $this->redirectToRoute('program_index');
         }
 
@@ -96,7 +105,7 @@ class ProgramController extends AbstractController
             $slug = $slugify->generate($program->getTitle());
             $program->setSlug($slug);
             $this->getDoctrine()->getManager()->flush();
-
+            $this->addFlash('success', 'Vous avez bien édité ce programme');
             return $this->redirectToRoute('program_index');
         }
 
@@ -117,6 +126,7 @@ class ProgramController extends AbstractController
             $entityManager->flush();
         }
 
+        $this->addFlash('danger', 'La série a bien été supprimé');
         return $this->redirectToRoute('program_index');
     }
 }

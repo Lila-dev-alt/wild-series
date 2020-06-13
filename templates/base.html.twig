@@ -11,6 +11,16 @@
     <header>
         {% include 'navbar.html.twig' %}
     </header>
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success text-center">
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% for message in app.flashes('danger') %}
+        <div class="alert alert-warning text-center">
+            {{ message }}
+        </div>
+    {% endfor %}
         {% block body %}{% endblock %}
         {% block javascripts %}{{ encore_entry_script_tags('app') }}{% endblock %}
     </body>

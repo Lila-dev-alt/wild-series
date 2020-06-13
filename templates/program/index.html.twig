@@ -4,6 +4,7 @@
 {% block body %}
     <h1 class="bg-warning text-center mt-3">Program index</h1>
     <div class="container m-auto d-flex justify-content-center">
+     <!--   {{ app.session.get('total') }}  -->
         <div>
         <div class="button-s text-right">
         <a class="btn btn-danger" href="{{ path('program_new') }}">Créez un nouveau</a>
@@ -21,6 +22,7 @@
             </tr>
         </thead>
         <tbody>
+
         {% for program in programs %}
             <tr>
                 <td> <strong>{{ program.title }} </strong></td>

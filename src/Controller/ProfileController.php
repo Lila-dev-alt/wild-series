@@ -13,10 +13,9 @@ class ProfileController extends AbstractController
 {
     /**
      * @Route("/my-profile", name="my_profile", methods={"GET"})
-     * @param UserRepository $userrRepository
      * @return Response
      */
-    public function index(UserRepository $userrRepository): Response
+    public function index(): Response
     {
 
        return $this->render('my_profile.html.twig');
