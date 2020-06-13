@@ -3,9 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Program;
+use App\Entity\User;
 use App\Form\ProgramType;
 use App\Repository\ProgramRepository;
 use App\Service\Slugify;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -128,5 +130,30 @@ class ProgramController extends AbstractController
 
         $this->addFlash('danger', 'La série a bien été supprimé');
         return $this->redirectToRoute('program_index');
+    }
+
+    /**
+     * @Route("/{id}/watchlist", name="program_watchlist", methods={"GET","POST"})
+     * @param Request $request
+     * @param Program $program
+     * @param EntityManagerInterface $manager
+     * @return Response
+     */
+    public function addToWatchlist(Request $request, Program $program, EntityManagerInterface
+    $manager): Response
+    {
+        $user = $this->getUser();
+        if ($user->isInWatchlist($program)) {
+            $user->removeProgram($program);
+        } else {
+            $user->addProgram($program);
+        }
+        $manager->persist($user);
+        $manager->flush();
+
+        return $this->json([
+            'isInWatchlist' => $user->isInWatchlist($program)
+        ]);
+
     }
 }
