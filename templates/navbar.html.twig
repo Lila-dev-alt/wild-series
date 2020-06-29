@@ -14,12 +14,15 @@
     </div>
     {% if app.user %}
 
-
-        <a class=" nav-link text-white font-weight-bold" href="/my-profile"> Mon compte</a>
-        <a class=" nav-link text-white font-weight-bold" href="{{ path('app_logout') }}"> Se déconnecter</a>
+        <a href="#">  {% trans with {'%username%': app.user.email} %}
+                hello_username
+            {% endtrans %} !</a>
+        <a class=" nav-link text-white font-weight-bold" href="/my-profile"> Mon compte  </a>
+        <a class=" nav-link text-white font-weight-bold" href="{{ path('app_logout') }}"> Déconnexion</a>
 
     {% else %}
-        <a class="nav-item nav-link text-white font-weight-bold" href="{{ path('app_login') }}"> Se connecter</a>
+        <a class="nav-item nav-link text-white font-weight-bold" href="{{ path('app_login') }}"> Connexion</a>
         <a class="nav-item nav-link text-white font-weight-bold" href="{{ path('app_register') }}"> S'inscrire</a>
     {% endif %}
+
 </nav>
