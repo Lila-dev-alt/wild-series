@@ -9,6 +9,9 @@
             <a class="nav-item nav-link text-white font-weight-bold" href="{{ path('program_index') }}">Séries</a>
             <a class="nav-item nav-link text-white font-weight-bold" href="{{ path('season_index') }}">Saisons</a>
             <a class="nav-item nav-link text-white font-weight-bold" href="{{ path('episode_index') }}">Episodes</a>
+            {{ render(controller(
+                'App\\Controller\\WildController::AllCategories'
+            )) }}
             <a class="nav-item nav-link text-white font-weight-bold" href="{{ path('actor_index') }}">Acteurs</a>
         </div>
     </div>

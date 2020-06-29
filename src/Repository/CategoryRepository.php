@@ -47,4 +47,12 @@ class CategoryRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function findAllSetMaxResult()
+    {
+        $qb = $this->createQueryBuilder('c')
+            ->setMaxResults(30)
+            ->getQuery();
+
+        return $qb->execute();
+    }
 }

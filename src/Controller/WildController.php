@@ -11,6 +11,7 @@ use App\Entity\Program;
 use App\Entity\Season;
 use App\Form\CommentType;
 use App\Form\ProgramSearchType;
+use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -203,6 +204,16 @@ public function showEpisode(Request $request, Episode $episode, EntityManagerInt
         return $this->render('index_actors.html.twig', [
             'programs'=> $programs,
             'actor'=> $actor
+        ]);
+    }
+
+    public function AllCategories():Response
+    {
+        $categoryRepository = $this->getDoctrine()->getRepository(Category::class);
+        $categories = $categoryRepository->findAll();
+
+        return $this->render('categories.html.twig', [
+            'categories'=> $categories
         ]);
     }
 }

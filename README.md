@@ -45,3 +45,7 @@ désolé les flashs n'ont pas la bonne couleur, j'ai personnalisé mes couleurs 
 24
 
 https://www.loom.com/share/d6609a60b12f46fa8ab61912dc0acb8d
+
+quete embeded controller 
+
+https://www.loom.com/share/121f065ab3874050965784285ecf823c
