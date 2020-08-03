@@ -12,3 +12,8 @@ hwi_oauth:
             options:
                 display: popup
                 csrf: true
+        github:
+            type:                github
+            client_id:           '%env(GITHUB_ID)%'
+            client_secret:       '%env(GITHUB_SECRET)%'
+            scope:               'user:email,public_repo'

@@ -22,6 +22,12 @@ security:
                     - App\Security\LoginFormAuthenticator
             logout:
                 path: app_logout
+            oauth:
+                ressource_owners:
+                    github:      "login/check-github"
+                login_path:        /login
+                    use_forward:       false
+                    failure_path:      /login
                 # where to redirect after logout
                 # target: app_any_route
 
