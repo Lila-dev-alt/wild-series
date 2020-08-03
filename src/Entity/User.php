@@ -34,7 +34,7 @@ class User implements UserInterface
 
     /**
      * @var string The hashed password
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $password;
 
@@ -57,6 +57,48 @@ class User implements UserInterface
      * @ORM\ManyToMany(targetEntity=Program::class)
      */
     private $programs;
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $githubID;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $githubAccessToken;
+
+    /**
+     * @return mixed
+     */
+    public function getGithubAccessToken()
+    {
+        return $this->githubAccessToken;
+    }
+
+    /**
+     * @param mixed $githubAccessToken
+     */
+    public function setGithubAccessToken($githubAccessToken): void
+    {
+        $this->githubAccessToken = $githubAccessToken;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGithubID()
+    {
+        return $this->githubID;
+    }
+
+    /**
+     * @param mixed $githubID
+     */
+    public function setGithubID($githubID): void
+    {
+        $this->githubID = $githubID;
+    }
+
 
     public function __construct()
     {

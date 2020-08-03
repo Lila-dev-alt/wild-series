@@ -15,14 +15,7 @@
             You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
         </div>
     {% endif %}
-        <!-- Portfolio Section Heading-->
-        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Admin Dashboard</h2>
-        <!-- Icon Divider-->
-        <div class="divider-custom">
-            <div class="divider-custom-line"></div>
-            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-            <div class="divider-custom-line"></div>
-        </div>
+
     <h1 class="h3 mb-3 font-weight-normal bg-warning text-center">Connectez-vous !</h1>
     <label for="inputEmail">Email</label>
     <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
@@ -33,20 +26,14 @@
            value="{{ csrf_token('authenticate') }}"
     >
 
-    {#
-        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-        See https://symfony.com/doc/current/security/remember_me.html
-
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" name="_remember_me"> Remember me
-            </label>
-        </div>
-    #}
-
     <button class="btn btn-lg btn-primary mt-2 float-right" type="submit">
         Connexion
     </button>
+
 </form>
+      <a href="{{ path('hwi_oauth_service_redirect', {'service': 'github' }) }}">
+          <span>Login avec Github 🐱</span>
+      </a>
   </div>
+
 {% endblock %}
