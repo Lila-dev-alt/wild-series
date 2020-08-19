@@ -3,14 +3,19 @@
 namespace App\Entity;
 
 use App\Repository\ProgramRepository;
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=ProgramRepository::class)
+ * //On précise à l’entité que nous utiliserons l’upload du package Vich uploader
+ * @Vich\Uploadable
  * @UniqueEntity(fields={"title"}, message="Ce programme existe déjà !")
  */
 class Program
@@ -74,6 +79,22 @@ class Program
      * @ORM\Column(type="string", length=255)
      */
     private $slug;
+
+    //On va créer un nouvel attribut à notre entité, qui ne sera pas lié à une colonne
+    // Tu peux d’ailleurs voir que l’annotation ORM column n’est pas spécifiée car
+    //On ne rajoute pas de données de type file en bdd
+    /**
+     * @Vich\UploadableField(mapping="poster_file", fileNameProperty="poster")
+     * @var File
+     */
+    private $posterFile;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     * @var \DateTimeInterface|null
+     */
+    private $updatedAt;
+
 
     public function __construct()
     {
@@ -227,5 +248,33 @@ class Program
         $this->slug = $slug;
 
         return $this;
+    }
+
+    public function setPosterFile(File $image = null)
+    {
+        $this->posterFile = $image;
+        if ($image) {
+            $this->updatedAt = new DateTime('now');
+        }
+    }
+
+    public function getPosterFile(): ?File
+    {
+        return $this->posterFile;
+    }
+    /**
+     * @return DateTime
+     */
+    public function getUpdatedAt(): DateTime
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @param DateTime $updatedAt
+     */
+    public function setUpdatedAt(DateTime $updatedAt): void
+    {
+        $this->updatedAt = $updatedAt;
     }
 }
